@@ -1,32 +1,12 @@
 <html>
 <header>
-  <script src="./removeBanner.js"></script>
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <title>sacul.xyz</title>
 
   <script>
-    var title = document.title;
-    var marqueeTitle = "sacul.xyz ";
-    var animationSpeed = 50; // Geschwindigkeit der Animation in Millisekunden
-    var titleInterval;
-    var audio;
-    var isMuted = false;
-
-    function startMarquee() {
-      document.title = marqueeTitle;
-      titleInterval = setInterval(function() {
-        marqueeTitle = marqueeTitle.substring(1) + marqueeTitle.charAt(0);
-        document.title = marqueeTitle;
-      }, animationSpeed);
-    }
-
-    function stopMarquee() {
-      clearInterval(titleInterval);
-      document.title = title;
-    }
-
     function hideSplashscreen() {
       var splashscreen = document.getElementById('splashscreen');
       var content = document.getElementById('content');
@@ -57,41 +37,40 @@
     function updateVolume(volume) {
   audio.volume = volume;
   if (volume == 0) {
-    audio.muted = true; // Audio stummschalten, wenn die Lautstärke auf 0 gesetzt wird
+    audio.muted = true;
   } else {
-    audio.muted = false; // Audio aktivieren, wenn die Lautstärke nicht 0 ist
+    audio.muted = false;
   }
-  updateMuteButton(); // Mute-Button aktualisieren
+  updateMuteButton();
 }
 
     window.addEventListener('DOMContentLoaded', function() {
       audio = document.getElementById('song');
       audio.addEventListener('canplaythrough', function() {
-        // Audio-Element ist vollständig geladen
+
         var muteButton = document.getElementById('muteButton');
         var volumeSlider = document.getElementById('volumeSlider');
-        muteButton.style.display = 'inline-block'; // Den Mute-Button anzeigen
-        volumeSlider.style.display = 'inline-block'; // Den Lautstärkeregler anzeigen
+        muteButton.style.display = 'inline-block';
+        volumeSlider.style.display = 'inline-block';
       });
     });
 
-    // Audio-Element abrufen
     function fadeAudioIn(element) {
-      var duration = 5000; // Fade-In-Dauer in Millisekunden
-      var interval = 10; // Intervall für Fade-In in Millisekunden
-      var targetVolume = 0.7; // Ziellautstärke
+      var duration = 5000;
+      var interval = 10;
+      var targetVolume = 0.7;
 
-      element.volume = 0; // Startlautstärke auf 0 setzen
-      element.play(); // Audio abspielen
+      element.volume = 0;
+      element.play();
 
       var volumeStep = targetVolume / (duration / interval);
 
       var fadeInterval = setInterval(function() {
         if (element.volume + volumeStep < targetVolume) {
-          element.volume += volumeStep; // Lautstärke schrittweise erhöhen
+          element.volume += volumeStep;
         } else {
-          element.volume = targetVolume; // Ziellautstärke erreichen
-          clearInterval(fadeInterval); // Fade-In beenden
+          element.volume = targetVolume;
+          clearInterval(fadeInterval);
         }
       }, interval);
     }
@@ -113,16 +92,16 @@ $$ |\$$$$$$  |\$$$$$$$\\$$$$$$$ |$$$$$$$  |
 \__| \______/  \_______|\_______|\_______/ 
   </pre>
   <div id="content"></div>
-  <!-- Mute-Button hinzufügen -->
+
   <button id="muteButton" class="mute-button" onclick="toggleMute()">
     <i class="fas fa-volume-up"></i>
   </button>
-  <!-- Lautstärkeregler hinzufügen -->
+
   <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.7" onchange="updateVolume(this.value)">
 
   <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
   <script src="typewriter.js"></script>
-  <!-- Song hinzufügen -->
+
   <audio id="song" src="audio.mp3"></audio>
 </body>
 
