@@ -1,7 +1,4 @@
 body {
-    img[alt="www.000webhost.com"]{
-        display:none;
-        }
     background-color: #000;
     color: #fff;
     font-family: 'Consolas', monospace;
@@ -74,11 +71,10 @@ a.blink-animation {
     color: #00ffff;
 }
 
-/* Lautstärkeregler-Stil */
 #volumeSlider {
     position: fixed;
     bottom: 27px;
-    left: 55px; /* Geänderte Position */
+    left: 55px;
     width: 100px;
     height: 5px;
     background-color: #999999;
